@@ -1,0 +1,1 @@
+grant alter trace to [CORP\robersmi]

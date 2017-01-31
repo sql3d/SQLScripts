@@ -1,0 +1,1 @@
+Create directories Trace01-Trace10 on disk where you will be storing the trace files.

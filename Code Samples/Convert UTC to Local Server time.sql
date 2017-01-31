@@ -1,0 +1,1 @@
+SELECT DATEADD(mi, DATEDIFF(mi, GETUTCDATE(), GETDATE()), MAX(ColumnName)) AS LocalTime
