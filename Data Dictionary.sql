@@ -1,3 +1,4 @@
+
 SELECT 
 	s.name AS SchemaName
 	,t.name AS TableName
@@ -5,9 +6,9 @@ SELECT
 	,CASE
 		WHEN st.name IN ('INT', 'TINYINT', 'SMALLINT', 'BIGINT', 'DATETIME', 'BIT', 'FLOAT', 'REAL', 'DATE', 
 						'TIME', 'TIMESTAMP', 'SMALLDATETIME', 'UNIQUEIDENTIFIER', 'HIERARCHYID' ,'MONEY', 'SMALLMONEY') THEN UPPER(st.name)
-		WHEN st.collationid IS NOT NULL THEN UPPER(st.name) + '(' + CAST(st.length AS VARCHAR(4)) + ')'
-		WHEN st.name IN ('DATETIME2') THEN UPPER(st.name) + '(' + CAST(st.length AS VARCHAR(4)) + ')'
-		ELSE UPPER(st.name) + '(' + CAST(st.xprec AS VARCHAR(4)) + ',' + CAST(st.xscale AS VARCHAR(4)) + ')'
+		WHEN st.collationid IS NOT NULL THEN UPPER(st.name) + '(' + CAST(c.max_length AS VARCHAR(4)) + ')'
+		WHEN st.name IN ('DATETIME2') THEN UPPER(st.name) + '(' + CAST(c.max_length AS VARCHAR(4)) + ')'
+		ELSE UPPER(st.name) + '(' + CAST(c.precision AS VARCHAR(4)) + ',' + CAST(c.scale AS VARCHAR(4)) + ')'
 	END AS DataType
 	,CASE c.is_nullable 
 		WHEN 0 THEN ''
@@ -22,7 +23,8 @@ SELECT
 		WHEN fk.parent_object_id IS NULL THEN ''
 		ELSE 'Yes'
 	END AS ForeignKey
-	,COALESCE(fks.name + '.' + ft.name, '') AS ForeignKeyTable
+	,COALESCE(fks.name + '.' + ft.name, '') AS ForeignTable
+	,COALESCE(fkc.name, '') AS ForeignColumn
 FROM sys.tables AS t
 	INNER JOIN sys.schemas AS s ON t.schema_id = s.schema_id
 	INNER JOIN sys.columns AS c ON c.object_id = t.object_id
@@ -40,7 +42,10 @@ FROM sys.tables AS t
 	LEFT OUTER JOIN sys.tables AS ft
 	   ON fk.referenced_object_id = ft.object_id
 	LEFT JOIN sys.schemas AS fks ON ft.schema_id = fks.schema_id	 
+	LEFT JOIN sys.columns fkc ON fkc.object_id = ft.object_id
+		AND fkc.column_id = fk.referenced_column_id
 WHERE
     (t.name NOT IN ('sysdiagrams', 'DataDictionary'))
     AND (st.name NOT LIKE '%sysname%')
-ORDER BY s.name, t.name, c.column_id
+ORDER BY s.name, t.name--, c.column_id
+
