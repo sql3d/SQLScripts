@@ -4,10 +4,10 @@
 ## Update access key info above
 
 
-$NewEndpoint = "rds-shared-live-sqlserver-0001.cfxtpvtqarp5.us-east-1.rds.amazonaws.com"   ## !! Update Endpoint here !!
+$NewEndpoint = ""   ## !! Update Endpoint here !!
 
-$HostedZoneId = "ZHC4A6DG9G5YK"   ## cafepress.io
-$CNAMEArray = @('rds-cpcom-content-live.cafepress.io','rds-email-live.cafepress.io','rds-errorlog-live.cafepress.io','rds-partnerintegration-live.cafepress.io','rds-productmapping-live.cafepress.io','rds-simpleorder-live.cafepress.io','rds-transit-live.cafepress.io')
+$HostedZoneId = ""   ## cafepress.io
+$CNAMEArray = @('')
 
 foreach ($CName in $CNAMEArray){
 

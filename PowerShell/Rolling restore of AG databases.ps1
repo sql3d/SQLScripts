@@ -1,13 +1,13 @@
 ﻿cls
 ## Variables to Change
-$FromServer = 'db-ecomm-fe01.prod.pquadnt.com'
-$ToServer = 'ecomm-fe1sql.ad.pquadnt.com'
+$FromServer = ''
+$ToServer = ''
 
 
 ## Static variables that don't change
 $ToDataPath = 'S:\DB_DATA\' 
 $ToLogPath = 'S:\DB_LOGS\'
-$BackupDirectory = '\\ad.pquadnt.com\pc-sqlbackup\backups\'
+$BackupDirectory = ''
 
 $AvailabilityGroups = Get-DbaAvailabilityGroup -SqlInstance $FromServer
 $Cluster = Get-DbaWsfcCluster -ComputerName $FromServer 
