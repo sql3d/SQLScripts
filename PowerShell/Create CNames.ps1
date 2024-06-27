@@ -19,7 +19,7 @@ foreach ($rowCName in $dsCNAMES){
     $change1.ResourceRecordSet.ResourceRecords.Add(@{Value="$ServerName"})
     
     $params = @{
-        HostedZoneId="Z1HE808MTGE48M"
+        HostedZoneId=""
 	    ChangeBatch_Change=$change1
     }
 
