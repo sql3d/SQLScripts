@@ -6,7 +6,7 @@
 
 $NewEndpoint = ""
 $HostedZoneId = ""   ## cafepress.io
-$CNAMEArray = @('rds-commerce-live.cafepress.io','rds-searchtag-live.cafepress.io')
+$CNAMEArray = @('')
 
 foreach ($CName in $CNAMEArray){
 
