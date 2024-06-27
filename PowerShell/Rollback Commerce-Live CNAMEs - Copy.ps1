@@ -1,8 +1,6 @@
 ﻿cls
 ## Copy and paste access key info here
-$Env:AWS_ACCESS_KEY_ID=
-$Env:AWS_SECRET_ACCESS_KEY=
-$Env:AWS_SESSION_TOKEN=
+
 ## Update access key info above
 
 
