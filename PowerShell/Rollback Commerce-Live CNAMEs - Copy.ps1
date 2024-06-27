@@ -4,8 +4,8 @@
 ## Update access key info above
 
 
-$NewEndpoint = "rds-foun-commerce-live.cfcjeohtmapi.us-west-2.rds.amazonaws.com"
-$HostedZoneId = "ZHC4A6DG9G5YK"   ## cafepress.io
+$NewEndpoint = ""
+$HostedZoneId = ""   ## cafepress.io
 $CNAMEArray = @('rds-commerce-live.cafepress.io','rds-searchtag-live.cafepress.io')
 
 foreach ($CName in $CNAMEArray){
